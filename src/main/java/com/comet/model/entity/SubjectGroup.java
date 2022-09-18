@@ -6,9 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @NoArgsConstructor
@@ -21,8 +19,7 @@ public class SubjectGroup {
     @GeneratedValue
     private UUID id;
     private String title;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "student_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "subjectGroup")
     private Set<Student> students = new HashSet<>();
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
@@ -33,11 +30,8 @@ public class SubjectGroup {
     @Column(name = "chat_id")
     private String chatId;
 
-    public SubjectGroup(String title, Set<Student> students, Teacher teacher, Subject subject) {
+    public SubjectGroup(String title) {
         this.title = title;
-        this.students = students;
-        this.teacher = teacher;
-        this.subject = subject;
     }
 }
 

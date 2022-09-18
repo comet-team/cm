@@ -6,9 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @NoArgsConstructor
@@ -21,8 +19,7 @@ public class StudentGroup {
     @GeneratedValue
     private UUID id;
     private String title;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "student_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "studentGroup")
     private Set<Student> students = new HashSet<>();
     @Column(name = "is_chat_created")
     private Boolean isChatCreated;

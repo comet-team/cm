@@ -17,8 +17,8 @@ services:
     build: .
 
     environment:
-      DB_SERVER: university
-      POSTGRES_DB: queue
+      DB_SERVER: db
+      POSTGRES_DB: university
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:

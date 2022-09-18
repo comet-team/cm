@@ -1,6 +1,7 @@
 package com.comet.controller;
 
 import com.comet.model.dto.ExternalStudentGroup;
+import com.comet.model.entity.Student;
 import com.comet.model.entity.StudentGroup;
 import com.comet.service.GroupService;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +46,7 @@ public class GroupController {
             @ApiResponse(code = 400, message = "Student is already assigned"),
     })
     public StudentGroup assignStudent(@RequestParam(value = "groupId") UUID groupId,
-                                     @RequestParam(value = "studentId") UUID studentID) {
+                                 @RequestParam(value = "studentId") UUID studentID) {
         return groupService.assignStudent(groupId, studentID);
     }
 }

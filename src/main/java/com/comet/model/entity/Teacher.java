@@ -22,9 +22,6 @@ public class Teacher {
     private String surname;
     @Column(name = "tg_link")
     private String tgLink;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "subject_id")
-    private Set<Subject> subjects = new HashSet<>();
 
     public Teacher(String name, String surname, String tgLink) {
         this.name = name;

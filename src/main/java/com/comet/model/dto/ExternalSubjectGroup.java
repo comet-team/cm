@@ -12,9 +12,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ExternalSubjectGroup {
     private String title;
-    private List<UUID> students;
-    private UUID teacher;
-    private UUID subject;
 }
 
 

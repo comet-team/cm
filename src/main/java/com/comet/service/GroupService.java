@@ -41,7 +41,8 @@ public class GroupService extends ModelMapper {
     public StudentGroup assignStudent(UUID groupId, UUID studentId){
         StudentGroup studentGroup = studentGroupRepository.findById(groupId).get();
         Student student = studentRepository.findById(studentId).get();
-        studentGroup.getStudents().add(student);
-        return studentGroupRepository.save(studentGroup);
+        student.setStudentGroup(studentGroup);
+        studentRepository.save(student);
+        return studentGroupRepository.findById(groupId).get();
     }
 }

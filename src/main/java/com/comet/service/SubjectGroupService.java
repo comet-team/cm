@@ -44,14 +44,16 @@ public class SubjectGroupService extends ModelMapper {
     public SubjectGroup assignStudent(UUID groupId, UUID studentId){
         SubjectGroup group = subjectGroupRepository.findById(groupId).get();
         Student student = studentRepository.findById(studentId).get();
-        group.getStudents().add(student);
-        return subjectGroupRepository.save(group);
+        student.setSubjectGroup(group);
+        studentRepository.save(student);
+        return subjectGroupRepository.findById(groupId).get();
     }
 
     public SubjectGroup assignStudentGroup(UUID subjectGroupId, UUID studentGroupId) {
         SubjectGroup subjectGroup = subjectGroupRepository.findById(subjectGroupId).get();
         StudentGroup studentGroup = studentGroupRepository.findById(studentGroupId).get();
-        studentGroup.getStudents().forEach(student -> studentGroup.getStudents().add(student));
-        return subjectGroupRepository.save(subjectGroup);
+        studentGroup.getStudents().forEach(student -> {student.setSubjectGroup(subjectGroup);
+        studentRepository.save(student);});
+        return subjectGroupRepository.findById(studentGroupId).get();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class FirstTest extends BaseTest {
@@ -38,8 +39,9 @@ public class FirstTest extends BaseTest {
         StudentGroup studentGroup = new StudentGroup("title");
         StudentGroup savedGroup = studentGroupRepository.save(studentGroup);
         Student studentSaved = studentRepository.save(student);
-        savedGroup.getStudents().add(studentSaved);
-        studentGroupRepository.save(savedGroup);
+        studentSaved.setStudentGroup(savedGroup);
+        studentRepository.save(studentSaved);
+        StudentGroup studentGroup1 = studentGroupRepository.findById(savedGroup.getId()).get();
         System.out.println();
         Teacher teacher = new Teacher("D", "E", "F");
         Subject subject = new Subject("КПО");

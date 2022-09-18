@@ -1,6 +1,7 @@
 package com.comet.controller;
 
 import com.comet.model.dto.ExternalStudentGroup;
+import com.comet.model.dto.IdRequest;
 import com.comet.model.entity.StudentGroup;
 import com.comet.service.ChatService;
 import com.comet.service.GroupService;
@@ -21,14 +22,14 @@ public class ChatController {
     private ChatService chatService;
 
     @ApiOperation("Create chat for student group")
-    @PostMapping("/student_group_chat/{studentGroupId}")
-    public void createStudentGroupChat(@PathVariable(value = "studentGroupId") UUID studentGroupId) {
-        chatService.createStudentGroupChat(studentGroupId);
+    @PostMapping("/student_group")
+    public void createStudentGroupChat(@RequestBody IdRequest idDto) {
+        chatService.createStudentGroupChat(idDto.getId());
     }
 
     @ApiOperation("Create chat for subject group")
-    @PostMapping("/subject_group_chat/{subjectGroupId}")
-    public void createSubjectGroupChat(@PathVariable(value = "subjectGroupId") UUID subjectGroupId) {
-        chatService.createSubjectGroupChat(subjectGroupId);
+    @PostMapping("/subject_group")
+    public void createSubjectGroupChat(@RequestBody IdRequest idDto) {
+        chatService.createSubjectGroupChat(idDto.getId());
     }
 }

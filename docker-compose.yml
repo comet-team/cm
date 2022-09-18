@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  db:
+    image: "postgres:alpine"
+    volumes:
+      - queue-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: university
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  cm:
+    build: .
+
+    environment:
+      DB_SERVER: university
+      POSTGRES_DB: queue
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 8081:8081
+    links:
+      - db
+    depends_on:
+      - db
+
+volumes:
+  queue-data:

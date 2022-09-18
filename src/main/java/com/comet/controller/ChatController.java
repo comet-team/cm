@@ -21,13 +21,13 @@ public class ChatController {
     private ChatService chatService;
 
     @ApiOperation("Create chat for student group")
-    @PostMapping("/student_group_chat")
+    @PostMapping("/student_group_chat/{studentGroupId}")
     public void createStudentGroupChat(@PathVariable(value = "studentGroupId") UUID studentGroupId) {
         chatService.createStudentGroupChat(studentGroupId);
     }
 
     @ApiOperation("Create chat for subject group")
-    @PostMapping("/subject_group_chat")
+    @PostMapping("/subject_group_chat/{subjectGroupId}")
     public void createSubjectGroupChat(@PathVariable(value = "subjectGroupId") UUID subjectGroupId) {
         chatService.createSubjectGroupChat(subjectGroupId);
     }

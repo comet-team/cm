@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient(value = "bot-adapter",
-        url = "http://localhost:8081/")
+        url = "http://a5be-217-150-192-102.ngrok.io/")
 public interface BotAdapter {
 
     @PostMapping(value = "members")
